@@ -1,0 +1,22 @@
+.container {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.list {
+
+    background-color: lightgray;
+    font-size: 25px;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.user {
+    cursor: pointer;
+}
+
+.user:hover {
+    background-color: lightblue;
+}
