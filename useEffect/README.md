@@ -1,12 +1,21 @@
-# React + Vite
+Список и детали
+Вы решили потренироваться в использовании хука useEffect и реализовать следующее приложение — список с пользователями, в котором при клике на пользователя рядом появляется окно, отображающее детальную информацию о нём:
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+useEffect
 
-Currently, two official plugins are available:
+При первой загрузке ни один из элементов не выбран, поэтому отображается только список:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+First load
 
-## Expanding the ESLint configuration
+Механика
+Назовём первый компонент слева List, а второй справа — Details.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Реализуйте следующую логику:
+
+При загрузке приложения один раз делается запрос по адресу https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/hooks-context/use-effect/data/users.json и отрисовывается список в компоненте List.
+При клике на конкретный элемент списка в компонент Details передаётся один props: info (объект с полями id и name) и начинается загрузка данных по адресу: https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/hooks-context/use-effect/data/{id}.json, где {id} — это ID пользователя из props.
+На время загрузки можете отображать индикатор загрузки. Протестируйте с помощью выставления ограничения пропускной способности сети в Dev Tools.
+Важные моменты:
+
+Вся загрузка должна происходить через хук useEffect. Подумайте, как организовать единоразовую загрузку и загрузку при каждом изменении props.info.id.
+Обратите внимание, загрузка деталей должна происходить только при изменении props.info.id, а не при каждом рендере. То есть если на одного и того же пользователя кликнуть дважды, то загрузка произойдёт только в первый раз.
